@@ -3,6 +3,7 @@ const SITE_CONFIG = Object.freeze({
   siteUrl: "https://fuma7587-del.github.io/homepages/",
   noteUrl: "https://note.com/fuma_ai_kobo",
   xUrl: "https://x.com/fuma_ai_kobo",
+  youtubeUrl: "https://youtube.com/@rainytokyostudio?si=aV0q2IfKYIdexVlU",
   githubUrl: "https://github.com/Fuma7587-del",
   coconalaUrl: "https://coconala.com/users/5708207",
   pcSupportUrl: "https://coconala.com/services/4339404",
@@ -83,7 +84,68 @@ function renderNoteArticles() {
   });
 }
 
+function addYoutubeContent() {
+  const makeYoutubeLink = (className, text) => {
+    const link = document.createElement("a");
+    link.className = className;
+    link.dataset.link = "youtubeUrl";
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = text;
+    return link;
+  };
+
+  const topicLinks = document.querySelector(".topic-nav .container");
+  if (topicLinks && !topicLinks.querySelector("[data-link='youtubeUrl']")) {
+    topicLinks.append(makeYoutubeLink("", "YouTube"));
+  }
+
+  document.querySelectorAll(".side-card").forEach((card) => {
+    if (card.querySelector(".side-label")?.textContent.trim() !== "FOLLOW") return;
+    const actions = card.querySelector(".side-actions");
+    if (actions && !actions.querySelector("[data-link='youtubeUrl']")) {
+      actions.append(makeYoutubeLink("button secondary", "YouTube"));
+    }
+  });
+
+  document.querySelectorAll(".section").forEach((section) => {
+    if (section.querySelector(".eyebrow")?.textContent.trim() !== "FOLLOW") return;
+    const grid = section.querySelector(".grid");
+    if (!grid || grid.querySelector("[data-youtube-card]")) return;
+    grid.classList.remove("two");
+    const card = document.createElement("article");
+    card.className = "card";
+    card.dataset.youtubeCard = "";
+    const tag = document.createElement("span");
+    tag.className = "tag";
+    tag.textContent = "YouTube";
+    const title = document.createElement("h3");
+    title.textContent = "Rainy Tokyo Studio";
+    const description = document.createElement("p");
+    description.textContent = "雨の東京をテーマにした映像や音を、YouTubeで発信しています。";
+    card.append(tag, title, description, makeYoutubeLink("button secondary", "チャンネルを見る"));
+    grid.append(card);
+  });
+
+  document.querySelectorAll(".timeline").forEach((timeline) => {
+    if (timeline.querySelector("[data-youtube-activity]")) return;
+    const item = document.createElement("article");
+    item.className = "timeline-item";
+    item.dataset.youtubeActivity = "";
+    const time = document.createElement("time");
+    time.dateTime = "2026-08";
+    time.textContent = "2026年8月";
+    const title = document.createElement(timeline.querySelector("h2") ? "h2" : "h3");
+    title.textContent = "Rainy Tokyo Studioを開始";
+    const description = document.createElement("p");
+    description.textContent = "雨の東京をテーマにしたYouTubeチャンネル「Rainy Tokyo Studio」での発信を始めました。";
+    item.append(time, title, description, makeYoutubeLink("text-link", "YouTubeチャンネルを見る →"));
+    timeline.prepend(item);
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+  addYoutubeContent();
   renderNoteArticles();
   document.querySelectorAll("[data-link]").forEach((link) => {
     const value = SITE_CONFIG[link.dataset.link];
@@ -130,6 +192,17 @@ document.addEventListener("DOMContentLoaded", () => {
       link.textContent = "ココナラ";
       item.prepend(link);
       list.prepend(item);
+    }
+    if (list.querySelector("[data-link='noteUrl']") && !list.querySelector("[data-link='youtubeUrl']")) {
+      const item = document.createElement("li");
+      const link = document.createElement("a");
+      link.href = SITE_CONFIG.youtubeUrl;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.dataset.link = "youtubeUrl";
+      link.textContent = "YouTube";
+      item.append(link);
+      list.append(item);
     }
   });
   document.querySelectorAll("#global-nav a").forEach((link) => {

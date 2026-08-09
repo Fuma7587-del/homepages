@@ -39,6 +39,7 @@ const SITE_CONFIG = Object.freeze({
   siteUrl: "https://fuma7587-del.github.io/homepages/",
   noteUrl: "https://note.com/fuma_ai_kobo",
   xUrl: "https://x.com/fuma_ai_kobo",
+  youtubeUrl: "https://youtube.com/@rainytokyostudio?si=aV0q2IfKYIdexVlU",
   githubUrl: "https://github.com/Fuma7587-del",
   coconalaUrl: "https://coconala.com/users/5708207",
   pcSupportUrl: "https://coconala.com/services/4339404",
@@ -92,7 +93,7 @@ const SITE_CONFIG = Object.freeze({
 
 - [ ] 正式URLで全ページを開ける
 - [ ] ヘッダー、フッター、ロゴから正しいページへ移動できる
-- [ ] note、X、GitHub、PCえらび診断のリンクが正しい
+- [ ] note、X、YouTube、GitHub、PCえらび診断のリンクが正しい
 - [ ] メールリンクが正しい
 - [ ] 準備中の項目に存在しないリンクが付いていない
 - [ ] PC、スマートフォンの両方で横スクロールや文字切れがない
