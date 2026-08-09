@@ -2,7 +2,7 @@ const SITE_CONFIG = Object.freeze({
   siteName: "ふーまのAI工房",
   siteUrl: "https://fuma7587-del.github.io/homepages/",
   noteUrl: "https://note.com/fuma_ai_kobo",
-  xUrl: "https://x.com/fuma_fxtrade",
+  xUrl: "https://x.com/fuma_ai_kobo",
   githubUrl: "https://github.com/Fuma7587-del",
   coconalaUrl: "https://coconala.com/users/5708207",
   pcSupportUrl: "https://coconala.com/services/4339404",
