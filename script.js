@@ -9,10 +9,25 @@ const SITE_CONFIG = Object.freeze({
   pcSupportUrl: "https://coconala.com/services/4339404",
   usedPcCheckUrl: "https://coconala.com/services/4335513",
   coconalaBlogUrl: "https://coconala.com/blogs/5708207/790448",
+  coconalaBlogQuestionsUrl: "https://coconala.com/blogs/5708207/794279",
   contactEmail: "rein7587@gmail.com"
 });
 
 const NOTE_ARTICLES = Object.freeze([
+  { title: "生成AIで作った表はそのまま使わない｜数字・単位・合計を確認する6項目", url: "https://note.com/fuma_ai_kobo/n/nd3498a4d1978", category: "AI活用", description: "生成AIが作った表を共有する前に、項目、数字、単位、合計、並び順、出典を確認する方法を紹介します。", image: "assets/images/articles/2026-08-24-ai-table-checklist.png" },
+  { title: "OpenAIが「ChatGPT for Teens」を発表｜学習支援と安全機能を初心者向けに整理", url: "https://note.com/fuma_ai_kobo/n/nac4750f30461", category: "AIニュース", description: "13〜17歳向けの学習支援、安全対策、保護者向け管理機能を公式情報から整理します。", image: "assets/images/articles/2026-08-22-chatgpt-for-teens.png" },
+  { title: "生成AIの回答が物足りないときは？追加質問で改善する5つの基本", url: "https://note.com/fuma_ai_kobo/n/nc38acd333842", category: "AI活用", description: "最初の回答の不足や曖昧さを見つけ、追加質問で内容を改善する基本を紹介します。", image: "assets/images/articles/2026-08-21-ai-follow-up-questions.png" },
+  { title: "記事制作を月次レポートにする方法｜JSONから進捗を正しく振り返る", url: "https://note.com/fuma_ai_kobo/n/nd1ae604fe5a4", category: "記事制作", description: "制作ログから公開状況やカテゴリの偏りを集計し、次の改善につなげる方法を紹介します。", image: "assets/images/articles/2026-08-20-monthly-article-report.png" },
+  { title: "生成AIで下書きが増えすぎたら｜公開待ちの記事を整理する5ステップ", url: "https://note.com/fuma_ai_kobo/n/nfbb51bb8ac13", category: "記事制作", description: "下書き、画像、投稿準備、公開状況を整理し、公開に近い記事から仕上げる流れを紹介します。", image: "assets/images/articles/2026-08-19-organize-article-backlog.png" },
+  { title: "生成AIで作ったWebツール、公開前に何を見る？初心者向け7つの確認項目", url: "https://note.com/fuma_ai_kobo/n/n6cf93ac7c9f6", category: "Web開発", description: "入力、エラー、保存、スマホ表示、個人情報など、Webツール公開前の確認項目を整理します。", image: "assets/images/articles/2026-08-18-prepublish-web-tool-checklist.png" },
+  { title: "記事・画像・JSONをまとめて守る｜日付別にバックアップする基本手順", url: "https://note.com/fuma_ai_kobo/n/n733d955c6a04", category: "自動化", description: "記事本文、画像、JSON、投稿用セットを取り違えずにバックアップする基本手順を紹介します。", image: "assets/images/articles/2026-08-17-backup-article-package.png" },
+  { title: "AI要約で重要な条件を落とさない方法｜日付・数値・例外を残す指示の作り方", url: "https://note.com/fuma_ai_kobo/n/nd95bd821ca8f", category: "AI活用", description: "AI要約で期限、金額、対象者、例外、注意事項を残すための指示と確認方法を紹介します。", image: "assets/images/articles/2026-08-16-preserve-details-ai-summary.png" },
+  { title: "生成AIで社内ツールを作る前に｜手戻りを減らす「要件メモ」テンプレート", url: "https://note.com/fuma_ai_kobo/n/n4b5b63e62d69", category: "アプリ開発", description: "利用者、入力、出力、権限、保存、エラー対応を整理する要件メモの作り方を紹介します。", image: "assets/images/articles/2026-08-15-internal-tool-requirements-memo.png" },
+  { title: "有料記事の価格、どう決める？値付け前に整理したい5つのこと", url: "https://note.com/fuma_ai_kobo/n/nabbb1be01b7e", category: "情報発信", description: "読者の課題、無料部分との差、成果物、制作負担、更新対応から価格を考える方法を紹介します。", image: "assets/images/articles/2026-08-14-paid-article-pricing-basics.png" },
+  { title: "Markdown記事のリンク切れ候補を探す方法｜ローカル点検で確認漏れを減らそう", url: "https://note.com/fuma_ai_kobo/n/nde75fcd31fcc", category: "自動化", description: "Markdown内のリンク切れ候補をローカルで洗い出し、人が確認する流れを紹介します。", image: "assets/images/articles/2026-08-13-find-broken-link-candidates.png" },
+  { title: "生成AIニュースはどう選ぶ？公式発表を記事化する5つの基準", url: "https://note.com/fuma_ai_kobo/n/n38ece55df461", category: "AIニュース", description: "公式発表の新しさだけでなく、読者との関係、利用条件、実用性、検証可能性から判断します。", image: "assets/images/articles/2026-08-12-select-ai-news-official-announcements.png" },
+  { title: "毎日AI記事を作り続ける？制作頻度を見直す4つのサイン", url: "https://note.com/fuma_ai_kobo/n/n118962e82963", category: "記事制作", description: "似た記事や確認待ちが増えたときに、制作頻度と工程を見直す判断ポイントを紹介します。", image: "assets/images/articles/2026-08-11-review-daily-ai-article-workflow.png" },
+  { title: "生成AIのデータ設定、見直していますか？学習・履歴・削除の確認ポイント", url: "https://note.com/fuma_ai_kobo/n/n0098233dfc1e", category: "AI活用", description: "学習への利用、履歴、削除など、生成AIサービスのデータ設定を確認するポイントを整理します。", image: "assets/images/articles/2026-08-10-generative-ai-data-settings-check.png" },
   { title: "NotebookLMで複数資料を比較する方法｜共通点・違い・根拠を整理しよう", url: "https://note.com/fuma_ai_kobo/n/nf0eca8a736aa", category: "NotebookLM", description: "複数の資料を読み比べ、共通点や違い、根拠を整理する方法を紹介します。", image: "assets/images/articles/2026-08-09-notebooklm-compare-sources.png" },
   { title: "OpenAI Presenceとは？企業向けAIエージェントの特徴・提供条件を整理", url: "https://note.com/fuma_ai_kobo/n/n5358a57d6532", category: "AIニュース", description: "企業向けAIエージェントの特徴と提供条件を、確認できる情報から整理します。", image: "assets/images/articles/2026-08-08-openai-presence-guide.png" },
   { title: "Gemini Sparkとは？24時間動くAIエージェントの機能・利用条件・注意点", url: "https://note.com/fuma_ai_kobo/n/n10e03b1b9f83", category: "AIニュース", description: "Gemini Sparkの機能、利用条件、使う前に確認したい注意点をまとめます。", image: "assets/images/articles/2026-08-07-gemini-spark-guide.png" },
@@ -144,8 +159,67 @@ function addYoutubeContent() {
   });
 }
 
+function addLatestCoconalaContent() {
+  const latestTitle = "中古パソコン購入前に販売店へ聞きたい7つの質問｜コピペ用テンプレ付き";
+  const latestSummary = "正確な型番、バッテリー、液晶やキーボード、各端子、ストレージ、付属品、初期不良時の対応について、販売店へ確認したい質問をまとめています。";
+
+  const featured = document.querySelector(".external-article .featured-article");
+  if (featured) {
+    const thumb = featured.querySelector(".article-thumb span");
+    const tag = featured.querySelector(".tag");
+    const title = featured.querySelector("h3");
+    const description = featured.querySelector("p");
+    const link = featured.querySelector("a");
+    if (thumb) thumb.innerHTML = "中古PC<br>7つの質問";
+    if (tag) tag.textContent = "ココナラブログ・2026年8月17日";
+    if (title) title.textContent = latestTitle;
+    if (description) description.textContent = latestSummary;
+    if (link) link.dataset.link = "coconalaBlogQuestionsUrl";
+  }
+
+  const existingCoconalaArticle = document.querySelector(".article-highlight");
+  if (existingCoconalaArticle && !document.querySelector("[data-latest-coconala-article]")) {
+    const latest = existingCoconalaArticle.cloneNode(true);
+    latest.dataset.latestCoconalaArticle = "";
+    const thumb = latest.querySelector(".article-thumb span");
+    const tag = latest.querySelector(".tag");
+    const title = latest.querySelector("h2");
+    const paragraphs = latest.querySelectorAll("p");
+    const link = latest.querySelector("a");
+    if (thumb) thumb.innerHTML = "中古PC<br>7つの質問";
+    if (tag) tag.textContent = "2026年8月17日";
+    if (title) title.textContent = latestTitle;
+    if (paragraphs[0]) paragraphs[0].textContent = latestSummary;
+    if (link) link.dataset.link = "coconalaBlogQuestionsUrl";
+    existingCoconalaArticle.before(latest);
+  }
+
+  document.querySelectorAll(".timeline").forEach((timeline) => {
+    if (timeline.querySelector("[data-coconala-blog-activity]")) return;
+    const item = document.createElement("article");
+    item.className = "timeline-item";
+    item.dataset.coconalaBlogActivity = "";
+    const time = document.createElement("time");
+    time.dateTime = "2026-08-17";
+    time.textContent = "2026年8月17日";
+    const title = document.createElement(timeline.querySelector("h2") ? "h2" : "h3");
+    title.textContent = "ココナラブログに中古PCの記事を投稿";
+    const description = document.createElement("p");
+    description.textContent = "購入前に販売店へ確認したい7つの質問と、コピペ用テンプレートを公開しました。";
+    const link = document.createElement("a");
+    link.className = "text-link";
+    link.dataset.link = "coconalaBlogQuestionsUrl";
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = "記事を読む →";
+    item.append(time, title, description, link);
+    timeline.prepend(item);
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   addYoutubeContent();
+  addLatestCoconalaContent();
   renderNoteArticles();
   document.querySelectorAll("[data-link]").forEach((link) => {
     const value = SITE_CONFIG[link.dataset.link];

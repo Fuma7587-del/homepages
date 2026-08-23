@@ -45,6 +45,7 @@ const SITE_CONFIG = Object.freeze({
   pcSupportUrl: "https://coconala.com/services/4339404",
   usedPcCheckUrl: "https://coconala.com/services/4335513",
   coconalaBlogUrl: "https://coconala.com/blogs/5708207/790448",
+  coconalaBlogQuestionsUrl: "https://coconala.com/blogs/5708207/794279",
   contactEmail: "rein7587@gmail.com"
 });
 ```
