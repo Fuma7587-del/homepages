@@ -10,8 +10,57 @@ const SITE_CONFIG = Object.freeze({
   usedPcCheckUrl: "https://coconala.com/services/4335513",
   coconalaBlogUrl: "https://coconala.com/blogs/5708207/790448",
   coconalaBlogQuestionsUrl: "https://coconala.com/blogs/5708207/794279",
-  contactEmail: "rein7587@gmail.com"
+  contactEmail: "rein7587@gmail.com",
+  analyticsMeasurementId: "G-JDGQJWE897"
 });
+
+const ANALYTICS_CONSENT_KEY = "fuma-ai-kobo-analytics-consent";
+
+function loadGoogleAnalytics() {
+  if (!SITE_CONFIG.analyticsMeasurementId || window.googleAnalyticsLoaded) return;
+  window.googleAnalyticsLoaded = true;
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function gtag() { window.dataLayer.push(arguments); };
+  window.gtag("js", new Date());
+  window.gtag("config", SITE_CONFIG.analyticsMeasurementId);
+
+  const tag = document.createElement("script");
+  tag.async = true;
+  tag.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(SITE_CONFIG.analyticsMeasurementId)}`;
+  document.head.append(tag);
+}
+
+function showAnalyticsConsent() {
+  if (document.querySelector("[data-analytics-consent]")) return;
+  const banner = document.createElement("section");
+  banner.className = "analytics-consent";
+  banner.dataset.analyticsConsent = "";
+  banner.setAttribute("role", "region");
+  banner.setAttribute("aria-label", "アクセス解析の設定");
+  banner.innerHTML = `<div><strong>アクセス解析について</strong><p>サイト改善のためGoogle Analyticsを使用します。同意するとCookieなどを利用して匿名の利用状況を収集します。<a href="privacy.html">詳しく見る</a></p></div><div class="analytics-consent-actions"><button type="button" class="button secondary" data-analytics-deny>同意しない</button><button type="button" class="button" data-analytics-accept>同意する</button></div>`;
+
+  const decide = (choice) => {
+    try { localStorage.setItem(ANALYTICS_CONSENT_KEY, choice); } catch (_) { /* 保存できない場合も選択は反映 */ }
+    banner.remove();
+    if (choice === "granted") loadGoogleAnalytics();
+  };
+  banner.querySelector("[data-analytics-deny]").addEventListener("click", () => decide("denied"));
+  banner.querySelector("[data-analytics-accept]").addEventListener("click", () => decide("granted"));
+  document.body.append(banner);
+}
+
+function initializeAnalyticsConsent() {
+  let consent = null;
+  try { consent = localStorage.getItem(ANALYTICS_CONSENT_KEY); } catch (_) { /* 読み取れない場合は確認を表示 */ }
+  if (consent === "granted") loadGoogleAnalytics();
+  else if (consent !== "denied") showAnalyticsConsent();
+
+  const reset = document.querySelector("[data-analytics-consent-reset]");
+  if (reset) reset.addEventListener("click", () => {
+    try { localStorage.removeItem(ANALYTICS_CONSENT_KEY); } catch (_) { /* 保存領域が使えなくても再表示 */ }
+    showAnalyticsConsent();
+  });
+}
 
 const NOTE_ARTICLES = Object.freeze([
   { title: "生成AIで作った表はそのまま使わない｜数字・単位・合計を確認する6項目", url: "https://note.com/fuma_ai_kobo/n/nd3498a4d1978", category: "AI活用", description: "生成AIが作った表を共有する前に、項目、数字、単位、合計、並び順、出典を確認する方法を紹介します。", image: "assets/images/articles/2026-08-24-ai-table-checklist.png" },
@@ -218,6 +267,7 @@ function addLatestCoconalaContent() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  initializeAnalyticsConsent();
   addYoutubeContent();
   addLatestCoconalaContent();
   renderNoteArticles();
